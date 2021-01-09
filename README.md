@@ -1,5 +1,5 @@
-# CentOS Server Setup Script
-CentOS Server Setup Script | For an automated setup of various server types
+# CentOS (CentOS 8 and Stream) Server Setup Script
+CentOS Server Setup Script for CentOS 8 and CentOS Stream | For an automated setup of various server types
 
 Up to date, this repository contains the script for a basic server setup for CentOS 8 (8.2.2004, 8.3.2011, Stream release 8).
 
