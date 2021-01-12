@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # reference to the config and helper scripts
-source ./centos8_config.sh
+source ./centos_setup_resources/centos_config.sh
 
 get_centos_version()
 {

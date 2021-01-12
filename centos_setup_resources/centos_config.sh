@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ########### START Color definitions for script ###########
 # SOURCE (20201124): https://stackoverflow.com/a/5947802/2749755

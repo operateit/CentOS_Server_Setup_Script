@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # reference to the config and helper scripts
 source ./centos_setup_resources/centos_config.sh
@@ -81,6 +81,9 @@ print_setup_finish_information "Full system update performed\n-- Rebooting the s
 
 ########### START disabling SELinux ###########
 
+# SOURCE (20210112): https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/using_selinux/index#changing-to-permissive-mode_changing-selinux-states-and-modes
+# SOURCE (20210112): https://www.ibm.com/support/knowledgecenter/PurePower/p8ef9/p8ef9_selinux_setup.htm
+
 print_setup_start_information "Settings SELinux to Permissive Mode"
 
 # set SELinux to Permissive mode during this session
@@ -89,7 +92,7 @@ setenforce 0
 # set SELINUX for the time of configuration to permissive
 # in this stage, SELINX is active but only logs instead of enforces the settings
 # this makes debugging during setup much easier as errors are not caused by SELINUX
-sed -i 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/sysconfig/selinux
+sed -i s/^SELINUX=.*$/SELINUX=permissive/ /etc/selinux/config
 
 print_setup_finish_information "SELinux is now in Permissive Mode.\nThis Permissve Mode will be persistent after reboot."
 print_notification_information "SELinux is now in Permissive Mode!\nPlease install the right policies and set SELinux to Enforcing after setup!"
@@ -97,4 +100,4 @@ print_notification_information "SELinux is now in Permissive Mode!\nPlease insta
 ########### END disabling SELinux ###########
 
 # reboot in case of a new kernel
-#reboot
+reboot
