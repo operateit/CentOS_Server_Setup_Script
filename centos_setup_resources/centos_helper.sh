@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# reference to the config and helper scripts
+# reference to the config, helper and other setup scripts
 source ./centos_setup_resources/centos_config.sh
 
 get_centos_version()
@@ -12,7 +12,10 @@ get_centos_version()
 	then
 		if [[ "$(cat /etc/centos-release)" == *"Stream"* ]]; then
 			centos_version="Stream release 8"
-		fi	
+		fi
+	else
+		# return identified version if no match
+		centos_version=$(cat /etc/centos-release | sed -nre 's/^[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p')
 	fi
 	echo "$centos_version"
 }
@@ -24,7 +27,7 @@ print_setup_start_information()
 	start_header="\n\n${CYAN}################## Installation Start ##################\n"
 	start_footer="\n########################################################\n\n${NC}"
 	echo -e "${start_header}${1}${start_footer}"
-	sleep 5s
+	sleep "$print_sleep"
 }
 
 print_setup_finish_information()
@@ -34,7 +37,7 @@ print_setup_finish_information()
 	finish_header="\n\n${GREEN}################## Installation Finished ##################\n"
 	finish_footer="\n###########################################################\n\n${NC}"
 	echo -e "${finish_header}${1}${finish_footer}"
-	sleep 5s
+	sleep "$print_sleep"
 }
 
 print_notification_information()
@@ -44,7 +47,17 @@ print_notification_information()
 	notification_header="\n\n${ORANGE}################## IMPORTANT NOTIFICATION ##################\n"
 	notification_footer="\n###########################################################\n\n${NC}"
 	echo -e "${notification_header}${1}${notification_footer}"
-	sleep 5s
+	sleep "$print_sleep"
+}
+
+print_devmode_information()
+{
+	local devmode_header
+	local devmode_footer
+	devmode_header="\n\n${PURPLE}################## DEVMODE NOTIFICATION ##################\n"
+	devmode_footer="\n###########################################################\n\n${NC}"
+	echo -e "${devmode_header}${1}${devmode_footer}"
+	sleep "$print_sleep"
 }
 
 get_local_ipv4_address()

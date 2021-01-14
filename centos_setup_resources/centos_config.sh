@@ -23,10 +23,17 @@ NC='\033[0m' # No Color
 
 ########### END Color definitions for script ###########
 
-########### START CentOS 8 version definitions ###########
+########### START CentOS version definitions ###########
 
 CENTOS_822004="8.2.2004"
 CENTOS_832011="8.3.2011"
 CENTOS_STREAM8="Stream release 8"
 
-########### START CentOS 8 version definitions ###########
+########### START CentOS version definitions ###########
+
+########### START CentOS debug and test definitions ###########
+
+devmode=false
+print_sleep=2s
+
+########### END CentOS debug and test definitions ###########
